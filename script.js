@@ -80,5 +80,5 @@ function infoUsuario() {
     console.log(saludoUsuario);
     console.log("Bienvenid@ " + saludoUsuario.trim());
 }
-//infoUsuario();
-//datosPlazo();
+infoUsuario();
+datosPlazo();
