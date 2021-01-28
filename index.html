@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>  
+        <meta charset="UTF-8">
+        <meta nam="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="Css/estilos.css">
+    </head>
+    <body>
+<!--Navbar-->
+    <nav class="navbar navbar-light bg-dark">
+        <p class="navbar-brand titulo">Simulador de plazos fijos</p>
+        <form class="form-inline">
+            <button class="btn btn-light btn-outline-success my-2 my-sm-0" type="button">Registrate aqui</button>
+            <input class="form-control mr-sm-2 input_izq" type="text" placeholder="Usuario">
+            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña">
+            <button class="btn btn-dark btn-outline-light my-2 my-sm-0" type="submit">Log-in</button>
+        </form>
+    </nav>
+<!--Contenido-->
+        <h1>Descubre cuantos intereses puedes cobrar</h1>
+        <main>
+            <article class='info_banco'>
+                <p>La tasa nominal anual es de:</p>
+                <p>El importe ganado por intereses:</p>
+                <p>El plazo de dias:</p>
+                <p>Monto mínimo de inversión:</p>
+                <p>El importe total:</p>
+            </article>
+            <form class="info_opciones">
+                <section>
+                    <label for="banco">Elija un banco:</label>
+                    <select name="banco">
+                        <option value="1">Banco Nacion</option> 
+                        <option value="2">Banco Santander</option> 
+                        <option value="3">Banco Galicia</option>
+                        <option value="10">Banco Patagonia</option> 
+                        <option value="11">Banco Provincia</option> 
+                        <option value="12">Banco BBVA</option> 
+                    </select>
+                </section>
+                <section>
+                    <label for="esCliente">¿Sos cliente del banco?</label>
+                    <input name="esCliente" type="checkbox">
+                </section>
+                <section>
+                    <label for="dineroSimulado">Ingrese un monto:</label>
+                    <input type="number" name="dineroSimulado">
+                </section>
+                <section>
+                    <input type="submit" value="Enviar">
+                </section>
+            </form>
+        </main>
+<!--Sripts-->
+        <script src="script.js"></script>
+        <!--<script src="asd.js"></script>-->
+    </body>
+</html>

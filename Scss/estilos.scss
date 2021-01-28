@@ -1,0 +1,35 @@
+.navbar-light{
+    .navbar-brand{
+        color: white;
+        margin: 0%;
+    }
+    form{
+        .input_izq{
+            margin-left: .5rem;
+        }
+    }
+}
+.form_login{
+    display: flex;
+    justify-content: center;
+    form {
+        display: grid;
+        .boton{
+            margin: 10%;
+        }
+    }
+}
+h1{
+    text-align: center;
+    margin: 5%;
+}
+main{
+    border: 2px black solid;
+    margin: 0px 30vw; 
+    h1{
+        text-align: center;
+    }
+    .info_banco{
+        background-color: cadetblue;
+    }
+}
