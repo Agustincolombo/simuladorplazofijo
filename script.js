@@ -4,12 +4,12 @@ function banco(nombre, TNA, TNACliente, montoMinimo){
     this.TNACliente = TNACliente;
     this.montoMinimo = montoMinimo;
 }
-var bSantander = new banco("Banco Santander",35,34,5000);
-var bGalicia = new banco("Banco Galicia",36,34,2000);
-var bNacion = new banco("Banco Nacion",37,36,1000);
-var bPatagonia = new banco("Banco Patagonia",37,34,1000);
-var bProvincia = new banco("Banco Provincia",37,36,1000);
-var bBBVA = new banco("Banco BBVA",39,35,5000);
+const bSantander = new banco("Banco Santander",35,34,5000);
+const bGalicia = new banco("Banco Galicia",36,34,2000);
+const bNacion = new banco("Banco Nacion",37,36,1000);
+const bPatagonia = new banco("Banco Patagonia",37,34,1000);
+const bProvincia = new banco("Banco Provincia",37,36,1000);
+const bBBVA = new banco("Banco BBVA",39,35,5000);
 function preguntaBanco(){
     alert("¿Que banco deseas seleccionar?")
     var validarBanco = parseInt(prompt("1=Nacion 2=Santander 3=Galicia 4=Patagonia 5=Provincia 6=BBVA"))
@@ -69,16 +69,20 @@ function datosPlazo(){
     return importeFinal,interesesGanados;
 }
 function infoUsuario() {
-    var infoUsuario = []
-    infoUsuario.push(prompt("Ingrese un nombre"));
-    infoUsuario.push(prompt("Ingrese su apellido"));
-    infoUsuario.push(prompt("Ingrese una contrasenia"));
-    infoUsuario.push(prompt("¿Sos mayor de edad?"));
-    let nombreUsuario = infoUsuario.slice(0,2);
+    let infoUsuario = []
+    let nombreeUsuario = document.getElementById("input_izq");
+    infoUsuario.push(nombreeUsuario);
+    infoUsuario.push(document.getElementsByClassName("input_der").value);
+    let nombreUsuario = infoUsuario.slice(1);
     let nombreBienvenida = nombreUsuario.toString();
     let saludoUsuario = nombreBienvenida.replace(/\s+/g, '');
-    console.log(saludoUsuario);
-    console.log("Bienvenid@ " + saludoUsuario.trim());
+    console.log(infoUsuario)
+    if (infoUsuario == undefined ) {
+        console.log("Para usar todos los beneficios registrese");    
+    }
+        else{
+            console.log("Bienvenid@ " + saludoUsuario.trim());
+        }
 }
 infoUsuario();
-datosPlazo();
+//datosPlazo();
