@@ -12,9 +12,9 @@
         <p class="navbar-brand titulo">Simulador de plazos fijos</p>
         <form class="form-inline">
             <button class="btn btn-light btn-outline-success my-2 my-sm-0" type="button">Registrate aqui</button>
-            <input class="form-control mr-sm-2 input_izq" id=input_izq type="text" placeholder="Usuario">
-            <input class="form-control mr-sm-2 input_der" type="password" placeholder="Contraseña">
-            <button class="btn btn-dark btn-outline-light my-2 my-sm-0" type="submit">Log-in</button>
+            <input class="form-control mr-sm-2" id="nickname" type="text" placeholder="Usuario">
+            <input class="form-control mr-sm-2" id="password" type="password" placeholder="Contraseña">
+            <button class="btn btn-dark btn-outline-light my-2 my-sm-0" type="button" id="log-in">Log-in</button>
         </form>
     </nav>
 <!--Contenido-->
@@ -30,25 +30,29 @@
             <form class="info_opciones">
                 <section>
                     <label for="banco">Elija un banco:</label>
-                    <select name="banco">
+                    <select id="bancoElegido" name="banco">
                         <option value="1">Banco Nacion</option> 
                         <option value="2">Banco Santander</option> 
                         <option value="3">Banco Galicia</option>
-                        <option value="10">Banco Patagonia</option> 
-                        <option value="11">Banco Provincia</option> 
-                        <option value="12">Banco BBVA</option> 
+                        <option value="4">Banco Patagonia</option> 
+                        <option value="5">Banco Provincia</option> 
+                        <option value="6">Banco BBVA</option> 
                     </select>
                 </section>
                 <section>
                     <label for="esCliente">¿Sos cliente del banco?</label>
-                    <input name="esCliente" type="checkbox">
+                    <input name="esCliente" type="checkbox" id="clienteBanco">
                 </section>
                 <section>
                     <label for="dineroSimulado">Ingrese un monto:</label>
-                    <input type="number" name="dineroSimulado">
+                    <input type="number" name="dineroSimulado" id='importeCalculo'>
                 </section>
                 <section>
-                    <input type="submit" value="Enviar">
+                    <label for="plazoDias">Cuantos dias desea calcular?</label>
+                    <input type="range" class="form-control-range" id="plazoDias" min='1' max='365'>
+                </section>
+                <section>
+                    <input type="button" value="Enviar" id="enviarPresupuesto">
                 </section>
             </form>
         </main>

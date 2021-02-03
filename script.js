@@ -11,11 +11,7 @@ const bPatagonia = new banco("Banco Patagonia",37,34,1000);
 const bProvincia = new banco("Banco Provincia",37,36,1000);
 const bBBVA = new banco("Banco BBVA",39,35,5000);
 function preguntaBanco(){
-    alert("¿Que banco deseas seleccionar?")
-    var validarBanco = parseInt(prompt("1=Nacion 2=Santander 3=Galicia 4=Patagonia 5=Provincia 6=BBVA"))
-    while (validarBanco <= 0 || validarBanco > 6 || isNaN(validarBanco)){
-        var validarBanco = parseInt(prompt("Valor incorrecto. 1=Nacion 2=Santander 3=Galicia 4=Patagonia 5=Provincia 6=BBVA"))
-    }
+    let validarBanco = document.getElementById("bancoElegido").value;
     if (validarBanco == 1){
         bancoElegido = bNacion;
     } else if (validarBanco == 2){
@@ -29,34 +25,28 @@ function preguntaBanco(){
     } else if (validarBanco == 6){
         bancoElegido = bBBVA;
     }
-    return this;
+    return bancoElegido;
 }
 function preguntaCliente(){
-    let validarCliente = parseInt(prompt("Sos cliente del banco? (1=Si/2=No)"));
-    while (isNaN(validarCliente) || validarCliente <= 0 || validarCliente > 2){
-        validarCliente = prompt("Ingrese una respuesta valida (1=Si/2=No)")
-    }
-    if (validarCliente == 1) {
+    if (document.getElementById("clienteBanco").checked) {
         esCliente = true;
         console.log("La tasa nominal anual es: " + bancoElegido.TNACliente + "%");
-    }   else if (validarCliente == 2){
+    }   else{
             esCliente = false;
             console.log("La tasa nominal anual es: " + bancoElegido.TNA + "%");
     }
-    return validarCliente,esCliente;
+    return esCliente;
 }
 function datosPlazo(){
     preguntaBanco();
     console.log("Banco: " + bancoElegido.nombre);
     console.log("El monto minimo de inversion es: $" + bancoElegido.montoMinimo)
-    var importe = parseInt(prompt("Ingrese un monto a calcular"));
-    while (importe < bancoElegido.montoMinimo || isNaN(importe) || importe < 0){
-        importe = parseInt(prompt("Ingrese un monto válido a calcular"))
+    let importe = document.getElementById("importeCalculo").value;
+    while (importe < bancoElegido.montoMinimo || importe < 0){
+        alert("Ingrese un monto válido a calcular")
+        break
     }
-    var diasPlazo = parseInt(prompt("Ingrese la cantidad de dias"))
-    while (diasPlazo<=0 || isNaN(diasPlazo)){
-        var diasPlazo = parseInt(prompt("Ingrese una cantidad de dias correcta"))
-    }
+    let diasPlazo = document.getElementById("plazoDias").value;
     preguntaCliente();
     if (esCliente == false) {
         var importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1 );
@@ -69,20 +59,29 @@ function datosPlazo(){
     return importeFinal,interesesGanados;
 }
 function infoUsuario() {
-    let infoUsuario = []
-    let nombreeUsuario = document.getElementById("input_izq");
-    infoUsuario.push(nombreeUsuario);
-    infoUsuario.push(document.getElementsByClassName("input_der").value);
-    let nombreUsuario = infoUsuario.slice(1);
-    let nombreBienvenida = nombreUsuario.toString();
+    function Usuario (nickname,contrasenia){
+        this.nickname = nickname;
+        this.contrasenia = contrasenia;
+    }
+    let admin = new Usuario("Administrador",12345);
+    let Usuario1 = new Usuario(
+        document.getElementById("nickname").value,
+        document.getElementById("password").value,
+        )
+    //let Usuario1_registrado = JSON.parse(Usuario1);
+    //localStorage.setItem(Usuario1_registrado);
+    let nombreBienvenida = Usuario1.nickname;
     let saludoUsuario = nombreBienvenida.replace(/\s+/g, '');
-    console.log(infoUsuario)
-    if (infoUsuario == undefined ) {
-        console.log("Para usar todos los beneficios registrese");    
+    if (Usuario1.nickname == admin.nickname && Usuario1.contrasenia == admin.contrasenia){
+        console.log("Bienvenid@ " + saludoUsuario.trim());
     }
         else{
-            console.log("Bienvenid@ " + saludoUsuario.trim());
+            console.log("Para usar todos los beneficios registrese");
         }
+    return infoUsuario;
 }
-infoUsuario();
-//datosPlazo();
+var buttonLogin = document.getElementById("log-in");
+buttonLogin.addEventListener("click", infoUsuario);
+var buttonCalcular = document.getElementById("enviarPresupuesto");
+buttonCalcular.addEventListener("click", datosPlazo);
+//infoUsuario();
