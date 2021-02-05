@@ -1,3 +1,4 @@
+//Informacion de los bancos
 function banco(nombre, TNA, TNACliente, montoMinimo){
     this.nombre = nombre;
     this.TNA = TNA;
@@ -27,6 +28,7 @@ function preguntaBanco(){
     }
     return bancoElegido;
 }
+//Funciones hijas
 function preguntaCliente(){
     if (document.getElementById("clienteBanco").checked) {
         esCliente = true;
@@ -37,6 +39,17 @@ function preguntaCliente(){
     }
     return esCliente;
 }
+function valorSlideDias(diasPlazo) {
+    document.getElementById('nroPlazoDias').value=diasPlazo;
+}
+function otroDia(){
+    if (document.getElementById("fechaPlazo").checked){
+        document.getElementById("numeroPlazo").disabled = false;
+    }   else{
+        document.getElementById("numeroPlazo").disabled = true
+        }
+}
+//Funcion padre
 function datosPlazo(){
     preguntaBanco();
     console.log("Banco: " + bancoElegido.nombre);
@@ -46,7 +59,14 @@ function datosPlazo(){
         alert("Ingrese un monto válido a calcular")
         break
     }
-    let diasPlazo = document.getElementById("plazoDias").value;
+    valorSlideDias()
+    if (document.getElementById("fechaPlazo").checked){
+        document.getElementById("numeroPlazo").disabled = false;
+        var diasPlazo = document.getElementById("numeroPlazo").value;
+    } else {
+        document.getElementById("numeroPlazo").disabled = true
+        var diasPlazo = document.getElementById("plazoDias").value
+    }
     preguntaCliente();
     if (esCliente == false) {
         var importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1 );
@@ -58,6 +78,7 @@ function datosPlazo(){
     console.log("Los intereses ganados son: $" + interesesGanados.toFixed(2))
     return importeFinal,interesesGanados;
 }
+//Login
 function infoUsuario() {
     function Usuario (nickname,contrasenia){
         this.nickname = nickname;

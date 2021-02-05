@@ -48,8 +48,16 @@
                     <input type="number" name="dineroSimulado" id='importeCalculo'>
                 </section>
                 <section>
-                    <label for="plazoDias">Cuantos dias desea calcular?</label>
-                    <input type="range" class="form-control-range" id="plazoDias" min='1' max='365'>
+                    <label for="plazoDias">Cuantos dias desea calcular? (1-365 dias)</label>
+                    
+                    <input type="range" class="form-control-range" id="plazoDias" min='1' max='365' onchange="valorSlideDias(this.value)">
+                    <input type="text" disabled  id="nroPlazoDias">
+                    
+                    <label for="otraFecha">Otro</label>
+                    
+                    <input name="otraFecha" type="checkbox" onchange="otroDia()"
+                    id="fechaPlazo">
+                    <input type="number" disabled id="numeroPlazo">
                 </section>
                 <section>
                     <input type="button" value="Enviar" id="enviarPresupuesto">
