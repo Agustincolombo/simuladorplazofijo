@@ -21,16 +21,23 @@
         <h1>Descubre cuantos intereses puedes cobrar</h1>
         <main>
             <article class='info_banco'>
+                <p>Banco:</p>
+                <input type="text" id="bancoRes" disabled >
                 <p>La tasa nominal anual es de:</p>
-                <p>El importe ganado por intereses:</p>
-                <p>El plazo de dias:</p>
+                <input type="text" id="TNARes" disabled>
                 <p>Monto mínimo de inversión:</p>
+                <input type="text" id="montoMinimoRes" disabled>
+                <p>Los intereses ganados:</p>
+                <input type="text" id="InteresesRes" disabled>
+                <p>El plazo de dias:</p>
+                <input type="text" id="diasRes" disabled>
                 <p>El importe total:</p>
+                <input type="text" id="importeRes" disabled>
             </article>
             <form class="info_opciones">
                 <section>
                     <label for="banco">Elija un banco:</label>
-                    <select id="bancoElegido" name="banco">
+                    <select id="bancoValores" name="banco" onfocus="mostrarBanco()" onchange="mostrarBanco()">
                         <option value="1">Banco Nacion</option> 
                         <option value="2">Banco Santander</option> 
                         <option value="3">Banco Galicia</option>
@@ -41,7 +48,7 @@
                 </section>
                 <section>
                     <label for="esCliente">¿Sos cliente del banco?</label>
-                    <input name="esCliente" type="checkbox" id="clienteBanco">
+                    <input name="esCliente" type="checkbox" id="clienteBanco" onchange="mostrarBanco()">
                 </section>
                 <section>
                     <label for="dineroSimulado">Ingrese un monto:</label>
@@ -49,12 +56,9 @@
                 </section>
                 <section>
                     <label for="plazoDias">Cuantos dias desea calcular? (1-365 dias)</label>
-                    
                     <input type="range" class="form-control-range" id="plazoDias" min='1' max='365' onchange="valorSlideDias(this.value)">
                     <input type="text" disabled  id="nroPlazoDias">
-                    
                     <label for="otraFecha">Otro</label>
-                    
                     <input name="otraFecha" type="checkbox" onchange="otroDia()"
                     id="fechaPlazo">
                     <input type="number" disabled id="numeroPlazo">

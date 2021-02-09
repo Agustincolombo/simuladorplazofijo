@@ -11,8 +11,9 @@ const bNacion = new banco("Banco Nacion",37,36,1000);
 const bPatagonia = new banco("Banco Patagonia",37,34,1000);
 const bProvincia = new banco("Banco Provincia",37,36,1000);
 const bBBVA = new banco("Banco BBVA",39,35,5000);
+//Funciones hijas
 function preguntaBanco(){
-    let validarBanco = document.getElementById("bancoElegido").value;
+    let validarBanco = document.getElementById("bancoValores").value;
     if (validarBanco == 1){
         bancoElegido = bNacion;
     } else if (validarBanco == 2){
@@ -28,16 +29,37 @@ function preguntaBanco(){
     }
     return bancoElegido;
 }
-//Funciones hijas
 function preguntaCliente(){
     if (document.getElementById("clienteBanco").checked) {
         esCliente = true;
-        console.log("La tasa nominal anual es: " + bancoElegido.TNACliente + "%");
     }   else{
             esCliente = false;
-            console.log("La tasa nominal anual es: " + bancoElegido.TNA + "%");
     }
     return esCliente;
+}
+//Mostrar datos previos
+function mostrarBanco(valorRes){
+    let validarBanco = document.getElementById("bancoValores").value;
+    if (validarBanco == 1){
+        valorRes = bNacion;
+    } else if (validarBanco == 2){
+        valorRes = bSantander;
+    } else if (validarBanco == 3){
+        valorRes = bGalicia;
+    } else if (validarBanco == 4){
+        valorRes = bPatagonia;
+    } else if (validarBanco == 5){
+        valorRes = bProvincia;
+    } else if (validarBanco == 6){
+        valorRes = bBBVA;
+    }
+    document.getElementById('bancoRes').value=valorRes.nombre;
+    if (document.getElementById("clienteBanco").checked){
+        document.getElementById('TNARes').value=valorRes.TNACliente;
+        }else{
+            document.getElementById('TNARes').value=valorRes.TNA;
+        }
+    document.getElementById('montoMinimoRes').value=valorRes.montoMinimo;
 }
 function valorSlideDias(diasPlazo) {
     document.getElementById('nroPlazoDias').value=diasPlazo;
@@ -52,8 +74,6 @@ function otroDia(){
 //Funcion padre
 function datosPlazo(){
     preguntaBanco();
-    console.log("Banco: " + bancoElegido.nombre);
-    console.log("El monto minimo de inversion es: $" + bancoElegido.montoMinimo)
     let importe = document.getElementById("importeCalculo").value;
     while (importe < bancoElegido.montoMinimo || importe < 0){
         alert("Ingrese un monto válido a calcular")
@@ -73,10 +93,20 @@ function datosPlazo(){
     } else if (esCliente == true){
         var importeFinal = importe * ((bancoElegido.TNACliente / 365 * diasPlazo) / 100 + 1 );
     }
-    console.log("El importe total es: $" + importeFinal.toFixed(2))
-    var interesesGanados = importeFinal - importe;
-    console.log("Los intereses ganados son: $" + interesesGanados.toFixed(2))
-    return importeFinal,interesesGanados;
+    function interesesResultado(intereses) {
+        intereses = importeFinal-importe;
+        document.getElementById('InteresesRes').value=intereses.toFixed(2);
+    }
+    function diasResultado(dias){
+        dias=diasPlazo;
+        document.getElementById('diasRes').value=dias;
+    }
+    function importeResultado(importe){
+        importe = importeFinal 
+        document.getElementById("importeRes").value=importe.toFixed(2);
+    }
+    
+    return interesesResultado(),diasResultado(),importeResultado();
 }
 //Login
 function infoUsuario() {
