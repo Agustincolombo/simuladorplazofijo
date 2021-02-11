@@ -2,8 +2,8 @@
   color: white;
   margin: 0%; }
 
-.navbar-light form .input_izq {
-  margin-left: .5rem; }
+.navbar-light form #input_izq {
+  margin-right: .5rem; }
 
 .form_login {
   display: flex;
@@ -15,12 +15,55 @@
 
 h1 {
   text-align: center;
-  margin: 5%; }
+  margin: 3%; }
 
-main {
-  border: 2px black solid;
-  margin: 0px 30vw; }
-  main h1 {
-    text-align: center; }
-  main .info_banco {
-    background-color: cadetblue; }
+main h1 {
+  text-align: center; }
+
+main .info_resultado {
+  height: 10vh;
+  background-color: cadetblue;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  main .info_resultado input {
+    height: 50%;
+    margin: 0 1%; }
+
+main .info_opciones {
+  margin: 3% 30%;
+  border: dashed 2px black; }
+  main .info_opciones section {
+    padding: 1.5%; }
+  main .info_opciones .diasIngresados .inputDias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5% 5px; }
+    main .info_opciones .diasIngresados .inputDias #nroPlazoDias {
+      width: 20%;
+      margin: 0 3%; }
+    main .info_opciones .diasIngresados .inputDias .input-group {
+      width: 50%;
+      margin-right: 5%;
+      margin-left: 3%; }
+
+main ul {
+  display: flex;
+  justify-content: center;
+  border: .15rem solid black; }
+  main ul li {
+    display: inline-flex;
+    padding: 0px .5rem; }
+    main ul li input {
+      font-size: 120%;
+      width: 80%;
+      appearance: none;
+      border: none;
+      background-color: transparent; }
+    main ul li img {
+      width: 3.5rem;
+      height: 3.5rem;
+      margin: .5rem; }
+  main ul .datosInput {
+    display: inline-grid; }

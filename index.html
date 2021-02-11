@@ -11,7 +11,7 @@
     <nav class="navbar navbar-light bg-dark">
         <p class="navbar-brand titulo">Simulador de plazos fijos</p>
         <form class="form-inline">
-            <button class="btn btn-light btn-outline-success my-2 my-sm-0" type="button">Registrate aqui</button>
+            <button class="btn btn-light btn-outline-success my-2 my-sm-0" id=input_izq type="button">Registrate aqui</button>
             <input class="form-control mr-sm-2" id="nickname" type="text" placeholder="Usuario">
             <input class="form-control mr-sm-2" id="password" type="password" placeholder="Contraseña">
             <button class="btn btn-dark btn-outline-light my-2 my-sm-0" type="button" id="log-in">Log-in</button>
@@ -20,13 +20,30 @@
 <!--Contenido-->
         <h1>Descubre cuantos intereses puedes cobrar</h1>
         <main>
-            <article class='info_banco'>
-                <p>Banco:</p>
-                <input type="text" id="bancoRes" disabled >
-                <p>La tasa nominal anual es de:</p>
-                <input type="text" id="TNARes" disabled>
-                <p>Monto mínimo de inversión:</p>
-                <input type="text" id="montoMinimoRes" disabled>
+            <ul class="container">
+                <li>
+                    <img src='Imagenes/banco.png'>
+                </li>
+                <li class="datosInput">
+                    <span>Banco:</span>
+                    <input type="text" id="bancoRes" disabled >
+                </li>
+                <li>
+                    <img src='Imagenes/TNA.png'>
+                </li>
+                <li class="datosInput">
+                    <span>TNA:</span>
+                    <input type="text" id="TNARes" disabled>
+                </li>
+                <li>
+                    <img src='Imagenes/montoMinimo1.png'>
+                </li>
+                <li class="datosInput">
+                    <span>Monto Minimo</span>
+                    <input type="text" id="montoMinimoRes" disabled>
+                </li>
+            </ul>
+            <article class='info_resultado container'>
                 <p>Los intereses ganados:</p>
                 <input type="text" id="InteresesRes" disabled>
                 <p>El plazo de dias:</p>
@@ -34,10 +51,11 @@
                 <p>El importe total:</p>
                 <input type="text" id="importeRes" disabled>
             </article>
-            <form class="info_opciones">
+            <form class="info_opciones ">
                 <section>
                     <label for="banco">Elija un banco:</label>
-                    <select id="bancoValores" name="banco" onfocus="mostrarBanco()" onchange="mostrarBanco()">
+                    <select id="bancoValores" name="banco" onchange="mostrarBanco()">
+                        <option value="0">Banco</option>
                         <option value="1">Banco Nacion</option> 
                         <option value="2">Banco Santander</option> 
                         <option value="3">Banco Galicia</option>
@@ -54,14 +72,21 @@
                     <label for="dineroSimulado">Ingrese un monto:</label>
                     <input type="number" name="dineroSimulado" id='importeCalculo'>
                 </section>
-                <section>
+                <section class=diasIngresados>
                     <label for="plazoDias">Cuantos dias desea calcular? (1-365 dias)</label>
                     <input type="range" class="form-control-range" id="plazoDias" min='1' max='365' onchange="valorSlideDias(this.value)">
-                    <input type="text" disabled  id="nroPlazoDias">
-                    <label for="otraFecha">Otro</label>
-                    <input name="otraFecha" type="checkbox" onchange="otroDia()"
-                    id="fechaPlazo">
-                    <input type="number" disabled id="numeroPlazo">
+                    <article class=inputDias>    
+                        <input type="text" disabled  id="nroPlazoDias">
+                        <label for="otraFecha">Otro:</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" onchange="otroDia()" id="fechaPlazo">
+                                </div>
+                            </div>
+                            <input type="number" id="numeroPlazo" class="form-control" aria-label="Text input with checkbox" disabled>
+                        </div>
+                    </article>
                 </section>
                 <section>
                     <input type="button" value="Enviar" id="enviarPresupuesto">

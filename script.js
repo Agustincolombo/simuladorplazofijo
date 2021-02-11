@@ -14,7 +14,9 @@ const bBBVA = new banco("Banco BBVA",39,35,5000);
 //Funciones hijas
 function preguntaBanco(){
     let validarBanco = document.getElementById("bancoValores").value;
-    if (validarBanco == 1){
+    if (validarBanco == 0){
+        alert("Elija un banco")
+    } else if (validarBanco == 1){
         bancoElegido = bNacion;
     } else if (validarBanco == 2){
         bancoElegido = bSantander;
@@ -37,32 +39,40 @@ function preguntaCliente(){
     }
     return esCliente;
 }
-//Mostrar datos previos
+//Mostrar datos previos EVENTOS
 function mostrarBanco(valorRes){
     let validarBanco = document.getElementById("bancoValores").value;
     if (validarBanco == 1){
         valorRes = bNacion;
-    } else if (validarBanco == 2){
-        valorRes = bSantander;
-    } else if (validarBanco == 3){
-        valorRes = bGalicia;
-    } else if (validarBanco == 4){
-        valorRes = bPatagonia;
-    } else if (validarBanco == 5){
-        valorRes = bProvincia;
-    } else if (validarBanco == 6){
-        valorRes = bBBVA;
+        }   else if (validarBanco == 2){
+            valorRes = bSantander;
+        }   else if (validarBanco == 3){
+            valorRes = bGalicia;
+        }   else if (validarBanco == 4){
+            valorRes = bPatagonia;
+        }   else if (validarBanco == 5){
+            valorRes = bProvincia;
+        }   else if (validarBanco == 6){
+            valorRes = bBBVA;
+        }   else{
+            valorRes = 0
     }
-    document.getElementById('bancoRes').value=valorRes.nombre;
-    if (document.getElementById("clienteBanco").checked){
-        document.getElementById('TNARes').value=valorRes.TNACliente;
-        }else{
-            document.getElementById('TNARes').value=valorRes.TNA;
+    if (valorRes == 0){
+        document.getElementById('bancoRes').value="Elija un banco";
+        document.getElementById('TNARes').value="0%"
+        document.getElementById('montoMinimoRes').value="$0";
+        } else if (document.getElementById("clienteBanco").checked){
+            document.getElementById('bancoRes').value=valorRes.nombre;
+            document.getElementById('TNARes').value=valorRes.TNACliente + "%";
+            document.getElementById('montoMinimoRes').value= "$" + valorRes.montoMinimo
+        } else{
+            document.getElementById('bancoRes').value=valorRes.nombre 
+            document.getElementById('TNARes').value=valorRes.TNA + "%";;
+            document.getElementById('montoMinimoRes').value="$" + valorRes.montoMinimo
         }
-    document.getElementById('montoMinimoRes').value=valorRes.montoMinimo;
 }
 function valorSlideDias(diasPlazo) {
-    document.getElementById('nroPlazoDias').value=diasPlazo;
+    document.getElementById('nroPlazoDias').value=diasPlazo + " dias";
 }
 function otroDia(){
     if (document.getElementById("fechaPlazo").checked){
@@ -79,7 +89,6 @@ function datosPlazo(){
         alert("Ingrese un monto válido a calcular")
         break
     }
-    valorSlideDias()
     if (document.getElementById("fechaPlazo").checked){
         document.getElementById("numeroPlazo").disabled = false;
         var diasPlazo = document.getElementById("numeroPlazo").value;
@@ -88,10 +97,10 @@ function datosPlazo(){
         var diasPlazo = document.getElementById("plazoDias").value
     }
     preguntaCliente();
-    if (esCliente == false) {
-        var importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1 );
-    } else if (esCliente == true){
+    if (esCliente){
         var importeFinal = importe * ((bancoElegido.TNACliente / 365 * diasPlazo) / 100 + 1 );
+    } else {
+        var importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1 );
     }
     function interesesResultado(intereses) {
         intereses = importeFinal-importe;
@@ -105,7 +114,6 @@ function datosPlazo(){
         importe = importeFinal 
         document.getElementById("importeRes").value=importe.toFixed(2);
     }
-    
     return interesesResultado(),diasResultado(),importeResultado();
 }
 //Login
@@ -119,17 +127,17 @@ function infoUsuario() {
         document.getElementById("nickname").value,
         document.getElementById("password").value,
         )
-    //let Usuario1_registrado = JSON.parse(Usuario1);
-    //localStorage.setItem(Usuario1_registrado);
+    localStorage.setItem("usuario",Usuario1.nickname);
+    localStorage.setItem("contrasenia",Usuario1.contrasenia);
     let nombreBienvenida = Usuario1.nickname;
     let saludoUsuario = nombreBienvenida.replace(/\s+/g, '');
-    if (Usuario1.nickname == admin.nickname && Usuario1.contrasenia == admin.contrasenia){
-        console.log("Bienvenid@ " + saludoUsuario.trim());
-    }
-        else{
-            console.log("Para usar todos los beneficios registrese");
-        }
-    return infoUsuario;
+    //if (Usuario1.nickname == admin.nickname && Usuario1.contrasenia == admin.contrasenia){
+    //    console.log("Bienvenid@ " + saludoUsuario.trim());
+    //}
+    //    else{
+    //        console.log("Para usar todos los beneficios registrese");
+    //    }
+    //return infoUsuario;
 }
 var buttonLogin = document.getElementById("log-in");
 buttonLogin.addEventListener("click", infoUsuario);
