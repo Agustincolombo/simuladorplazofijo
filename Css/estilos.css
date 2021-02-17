@@ -13,6 +13,10 @@
     .form_login form .boton {
       margin: 10%; }
 
+.modal-body p {
+  margin-top: 5%;
+  margin-bottom: 0%; }
+
 h1 {
   text-align: center;
   margin: 3%; }
@@ -26,7 +30,7 @@ main .info_resultado {
   display: flex;
   justify-content: center;
   align-items: center; }
-  main .info_resultado input {
+  main .info_resultado div {
     height: 50%;
     margin: 0 1%; }
 
@@ -35,6 +39,10 @@ main .info_opciones {
   border: dashed 2px black; }
   main .info_opciones section {
     padding: 1.5%; }
+  main .info_opciones input[type=number]::-webkit-inner-spin-button,
+  main .info_opciones input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
   main .info_opciones .diasIngresados .inputDias {
     display: flex;
     justify-content: center;

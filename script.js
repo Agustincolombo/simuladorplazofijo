@@ -116,13 +116,21 @@ function datosPlazo(){
     }
     return interesesResultado(),diasResultado(),importeResultado();
 }
+$(function () {
+    $('[data-toggle="popover"]').popover({
+        trigger: "hover"
+    })
+})
 //Login
-function infoUsuario() {
+$("#registrarUsuario").click(function(){
+    $('#exampleModal').modal('hide')
+});
+function registroUsuario() {
+    console.log("Se guardo el usuario")
     function Usuario (nickname,contrasenia){
         this.nickname = nickname;
         this.contrasenia = contrasenia;
     }
-    let admin = new Usuario("Administrador",12345);
     let Usuario1 = new Usuario(
         document.getElementById("nickname").value,
         document.getElementById("password").value,
@@ -139,8 +147,12 @@ function infoUsuario() {
     //    }
     //return infoUsuario;
 }
+function validarUsuario(){
+
+}
 var buttonLogin = document.getElementById("log-in");
-buttonLogin.addEventListener("click", infoUsuario);
+buttonLogin.addEventListener("click", validarUsuario);
 var buttonCalcular = document.getElementById("enviarPresupuesto");
 buttonCalcular.addEventListener("click", datosPlazo);
-//infoUsuario();
+var buttonRegistro = document.getElementById("registrarUsuario");
+buttonRegistro.addEventListener("click", registroUsuario);

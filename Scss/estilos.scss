@@ -19,6 +19,12 @@
         }
     }
 }
+.modal-body{
+    p{
+        margin-top: 5%;
+        margin-bottom: 0%;
+    }
+}
 h1{
     text-align: center;
     margin: 3%;
@@ -33,7 +39,7 @@ main{
         display: flex;
         justify-content: center;
         align-items: center;
-        input{
+        div{
             height: 50%;
             margin: 0 1%;
         }
@@ -43,6 +49,11 @@ main{
         border:dashed 2px black;
         section{
             padding: 1.5%;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0;
         }
         .diasIngresados{
            .inputDias{
