@@ -122,9 +122,25 @@ $(function () {
     })
 })
 //Login
-$("#registrarUsuario").click(function(){
-    $('#exampleModal').modal('hide')
-});
+function validarUsuario(){;
+    var todoCorrecto = true;
+    var formulario = document.formularioContacto;
+    for (var i=0; i<formulario.length; i++) {
+        if(formulario[i].type =='text' || formulario[i].type == "password") {
+                if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
+                    alert (formulario[i].name+ ' no puede estar vacío o contener sólo espacios en blanco');
+                    todoCorrecto=false;
+                }
+        }
+    }
+    if (todoCorrecto == true) {
+        $("#registrarUsuario").click(function(){
+            $('#exampleModal').modal('hide'),
+            $("#formRegistro")[0].reset();
+        })
+        registroUsuario()
+    }
+}
 function registroUsuario() {
     console.log("Se guardo el usuario")
     function Usuario (nickname,contrasenia){
@@ -139,20 +155,17 @@ function registroUsuario() {
     localStorage.setItem("contrasenia",Usuario1.contrasenia);
     let nombreBienvenida = Usuario1.nickname;
     let saludoUsuario = nombreBienvenida.replace(/\s+/g, '');
-    //if (Usuario1.nickname == admin.nickname && Usuario1.contrasenia == admin.contrasenia){
-    //    console.log("Bienvenid@ " + saludoUsuario.trim());
-    //}
-    //    else{
-    //        console.log("Para usar todos los beneficios registrese");
-    //    }
-    //return infoUsuario;
 }
-function validarUsuario(){
-
+function iniciarUsuario(){
+    if (localStorage["usuario"] === document.getElementById("nicknameLogin").value && localStorage["contrasenia"] === document.getElementById("passwordLogin").value){
+        console.log("Se aprobo al usuario")
+        } else{
+            console.log("USUARIO NO REGISTRADO")
+    }
 }
 var buttonLogin = document.getElementById("log-in");
-buttonLogin.addEventListener("click", validarUsuario);
+buttonLogin.addEventListener("click", iniciarUsuario);
 var buttonCalcular = document.getElementById("enviarPresupuesto");
 buttonCalcular.addEventListener("click", datosPlazo);
 var buttonRegistro = document.getElementById("registrarUsuario");
-buttonRegistro.addEventListener("click", registroUsuario);
+buttonRegistro.addEventListener("click", validarUsuario);

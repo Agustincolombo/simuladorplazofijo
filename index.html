@@ -12,8 +12,8 @@
         <p class="navbar-brand titulo">Simulador de plazos fijos</p>
         <form class="form-inline">
             <button class="btn btn-light btn-outline-success my-2 my-sm-0" id=input_izq type="button" data-toggle="modal" data-target="#exampleModal">Registrate aqui</button>
-            <input class="form-control mr-sm-2" type="text" placeholder="Usuario">
-            <input class="form-control mr-sm-2" type="password" placeholder="Contraseña">
+            <input class="form-control mr-sm-2" id='nicknameLogin' type="text" placeholder="Usuario">
+            <input class="form-control mr-sm-2" id='passwordLogin' type="password" placeholder="Contraseña">
             <button class="btn btn-dark btn-outline-light my-2 my-sm-0" type="button" id="log-in">Log-in</button>
         </form>
     </nav>
@@ -109,14 +109,13 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
-                <div class="modal-body">
+                <form class="modal-body" name="formularioContacto" id="formRegistro">
                     <strong>Complete el formulario de registro</strong>
                     <p>Usuario:</p>
-                    <input class="form-control mr-sm-2" id="nickname" type="text" placeholder="Usuario">
+                    <input class="form-control mr-sm-2" id="nickname" type="text" name="El usuario" placeholder="Usuario">
                     <p>Contraseña:</p>
-                    <input class="form-control mr-sm-2" id="password" type="password" placeholder="Contraseña">
-                    
-                </div>
+                    <input class="form-control mr-sm-2" id="password" name="La contraseña" type="password" placeholder="Contraseña">
+                </form>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" id="registrarUsuario">Registrarse</button>
