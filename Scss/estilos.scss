@@ -1,3 +1,7 @@
+$borde: 1px solid rgba(0,0,0,.2);
+.titulo{
+    position: relative;
+}
 .navbar-light{
     .navbar-brand{
         color: white;
@@ -29,7 +33,7 @@ h1{
     text-align: center;
     margin: 3%;
 }
-main{ 
+main{
     h1{
         text-align: center;
     }
@@ -39,6 +43,8 @@ main{
         display: flex;
         justify-content: center;
         align-items: center;
+        border: $borde;
+        border-radius: .3rem;
         div{
             height: 50%;
             margin: 0 1%;
@@ -46,7 +52,8 @@ main{
     }
     .info_opciones{
         margin: 3% 30%;
-        border:dashed 2px black;
+        border: $borde;
+        border-radius: .3rem;
         section{
             padding: 1.5%;
         }
@@ -77,6 +84,7 @@ main{
         display: flex;
         justify-content: center;
         border: .15rem solid black;
+        border-radius: .3rem;
         li{
         display: inline-flex;
         padding: 0px .5rem;

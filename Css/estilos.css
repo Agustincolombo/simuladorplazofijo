@@ -1,3 +1,6 @@
+.titulo {
+  position: relative; }
+
 .navbar-light .navbar-brand {
   color: white;
   margin: 0%; }
@@ -29,14 +32,17 @@ main .info_resultado {
   background-color: cadetblue;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: .3rem; }
   main .info_resultado div {
     height: 50%;
     margin: 0 1%; }
 
 main .info_opciones {
   margin: 3% 30%;
-  border: dashed 2px black; }
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: .3rem; }
   main .info_opciones section {
     padding: 1.5%; }
   main .info_opciones input[type=number]::-webkit-inner-spin-button,
@@ -59,7 +65,8 @@ main .info_opciones {
 main ul {
   display: flex;
   justify-content: center;
-  border: .15rem solid black; }
+  border: .15rem solid black;
+  border-radius: .3rem; }
   main ul li {
     display: inline-flex;
     padding: 0px .5rem; }

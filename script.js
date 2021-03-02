@@ -169,3 +169,26 @@ var buttonCalcular = document.getElementById("enviarPresupuesto");
 buttonCalcular.addEventListener("click", datosPlazo);
 var buttonRegistro = document.getElementById("registrarUsuario");
 buttonRegistro.addEventListener("click", validarUsuario);
+// Cotizacion dolar API
+$("#buttonDolar").click(function(){
+    $.ajax({
+        url: 'http://api.estadisticasbcra.com/usd_of',
+        type: 'GET',
+        data:{d: "2021-03-01"},
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDYxNzEwOTAsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJhZ3VzLmNhYi4yMDEyQGdtYWlsLmNvbSJ9.luZhNnBCn6ab9zMK1P8_2YTBPcuD_ENCYgbiYAxdok4fZl1F2g1DLBIIX8Z32bqhDbSyF7qzj7Z3k0EDKVV9hw');
+        },
+        function(){
+            var resDolarOf = $("#resultadoDolar")
+            $.each(respuesta, function (index, miembro) {
+                listaAPI.append(
+                    '<div>' +
+                    '<p>' + 'Fecha Cotizacion: ' + miembro.d + '<br>' +
+                    'Importe: $ ' + miembro.v + '<br>' +
+                    '<br>' + '______________________________________' +
+                    '</div>'
+                );
+            });
+        },
+    });
+})
