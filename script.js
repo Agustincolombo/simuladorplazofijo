@@ -1,120 +1,170 @@
+const expresiones = {
+    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
+    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+    password: /^.{4,12}$/, // 4 a 12 digitos.
+    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
+}
 //Informacion de los bancos
-function banco(nombre, TNA, TNACliente, montoMinimo){
+function banco(nombre, TNA, TNACliente, montoMinimo) {
     this.nombre = nombre;
     this.TNA = TNA;
     this.TNACliente = TNACliente;
     this.montoMinimo = montoMinimo;
 }
-const bSantander = new banco("Banco Santander",35,34,5000);
-const bGalicia = new banco("Banco Galicia",36,34,2000);
-const bNacion = new banco("Banco Nacion",37,36,1000);
-const bPatagonia = new banco("Banco Patagonia",37,34,1000);
-const bProvincia = new banco("Banco Provincia",37,36,1000);
-const bBBVA = new banco("Banco BBVA",39,35,5000);
+const bSantander = new banco("Banco Santander", 35, 34, 5000);
+const bGalicia = new banco("Banco Galicia", 36, 34, 2000);
+const bNacion = new banco("Banco Nacion", 37, 36, 1000);
+const bPatagonia = new banco("Banco Patagonia", 37, 34, 1000);
+const bProvincia = new banco("Banco Provincia", 37, 36, 1000);
+const bBBVA = new banco("Banco BBVA", 39, 35, 5000);
 //Funciones hijas
-function preguntaBanco(){
+function preguntaBanco() {
     let validarBanco = document.getElementById("bancoValores").value;
-    if (validarBanco == 0){
+    if (validarBanco == 0) {
         alert("Elija un banco")
-    } else if (validarBanco == 1){
+    } else if (validarBanco == 1) {
         bancoElegido = bNacion;
-    } else if (validarBanco == 2){
+    } else if (validarBanco == 2) {
         bancoElegido = bSantander;
-    } else if (validarBanco == 3){
+    } else if (validarBanco == 3) {
         bancoElegido = bGalicia;
-    } else if (validarBanco == 4){
+    } else if (validarBanco == 4) {
         bancoElegido = bPatagonia;
-    } else if (validarBanco == 5){
+    } else if (validarBanco == 5) {
         bancoElegido = bProvincia;
-    } else if (validarBanco == 6){
+    } else if (validarBanco == 6) {
         bancoElegido = bBBVA;
     }
     return bancoElegido;
 }
-function preguntaCliente(){
+function preguntaCliente() {
     if (document.getElementById("clienteBanco").checked) {
         esCliente = true;
-    }   else{
-            esCliente = false;
+    } else {
+        esCliente = false;
     }
     return esCliente;
 }
 //Mostrar datos previos EVENTOS
-function mostrarBanco(valorRes){
+function mostrarBanco(valorRes) {
     let validarBanco = document.getElementById("bancoValores").value;
-    if (validarBanco == 1){
+    if (validarBanco == 1) {
         valorRes = bNacion;
-        }   else if (validarBanco == 2){
-            valorRes = bSantander;
-        }   else if (validarBanco == 3){
-            valorRes = bGalicia;
-        }   else if (validarBanco == 4){
-            valorRes = bPatagonia;
-        }   else if (validarBanco == 5){
-            valorRes = bProvincia;
-        }   else if (validarBanco == 6){
-            valorRes = bBBVA;
-        }   else{
-            valorRes = 0
+    } else if (validarBanco == 2) {
+        valorRes = bSantander;
+    } else if (validarBanco == 3) {
+        valorRes = bGalicia;
+    } else if (validarBanco == 4) {
+        valorRes = bPatagonia;
+    } else if (validarBanco == 5) {
+        valorRes = bProvincia;
+    } else if (validarBanco == 6) {
+        valorRes = bBBVA;
+    } else {
+        valorRes = 0
     }
-    if (valorRes == 0){
-        document.getElementById('bancoRes').value="Elija un banco";
-        document.getElementById('TNARes').value="0%"
-        document.getElementById('montoMinimoRes').value="$0";
-        } else if (document.getElementById("clienteBanco").checked){
-            document.getElementById('bancoRes').value=valorRes.nombre;
-            document.getElementById('TNARes').value=valorRes.TNACliente + "%";
-            document.getElementById('montoMinimoRes').value= "$" + valorRes.montoMinimo
-        } else{
-            document.getElementById('bancoRes').value=valorRes.nombre 
-            document.getElementById('TNARes').value=valorRes.TNA + "%";;
-            document.getElementById('montoMinimoRes').value="$" + valorRes.montoMinimo
-        }
+    if (valorRes == 0) {
+        document.getElementById('bancoRes').value = "Elija un banco";
+        document.getElementById('TNARes').value = "0%"
+        document.getElementById('montoMinimoRes').value = "$0";
+    } else if (document.getElementById("clienteBanco").checked) {
+        document.getElementById('bancoRes').value = valorRes.nombre;
+        document.getElementById('TNARes').value = valorRes.TNACliente + "%";
+        document.getElementById('montoMinimoRes').value = "$" + valorRes.montoMinimo
+    } else {
+        document.getElementById('bancoRes').value = valorRes.nombre
+        document.getElementById('TNARes').value = valorRes.TNA + "%";;
+        document.getElementById('montoMinimoRes').value = "$" + valorRes.montoMinimo
+    }
 }
 function valorSlideDias(diasPlazo) {
-    document.getElementById('nroPlazoDias').value=diasPlazo + " dias";
+    document.getElementById('nroPlazoDias').value = diasPlazo + " dias";
 }
-function otroDia(){
-    if (document.getElementById("fechaPlazo").checked){
+function otroDia() {
+    if (document.getElementById("fechaPlazo").checked) {
         document.getElementById("numeroPlazo").disabled = false;
-    }   else{
+    } else {
         document.getElementById("numeroPlazo").disabled = true
-        }
+    }
+}
+window.onload= valorSlideDias(90);
+// Historial para usuarios registrados
+var listHist = document.getElementById('listaHistorial');
+var counter = 0
+const historial = [];
+function elementoHistorial() {
+    historial.push(
+        [crearSpan(bancoElegido.nombre),
+        crearSpan(importe),
+        crearSpan(diasPlazo),
+        crearSpan(interesesRes.toFixed(2)),
+        crearSpan(importeFinal.toFixed(2))
+        ]);
+    let listaNueva = document.createElement('li');
+    listaNueva.classList.add("mdc-list-item");
+    listHist.append(listaNueva);
+    function crearSpan(text) {
+        let nuevoSpan = document.createElement('span');
+        nuevoSpan.classList.add("mdc-list-item__text", "col-md-auto");
+        nuevoSpan.textContent = text;
+        return nuevoSpan
+    }
+
+    historial[counter].forEach(function (nuevoSpan) {
+        listaNueva.appendChild(nuevoSpan);
+    });
+    historial.shift();
 }
 //Funcion padre
-function datosPlazo(){
+var importeFinal;
+var diasPlazo;
+var importe;
+var interesesRes;
+function datosPlazo() {
     preguntaBanco();
-    let importe = document.getElementById("importeCalculo").value;
-    while (importe < bancoElegido.montoMinimo || importe < 0){
-        alert("Ingrese un monto válido a calcular")
-        break
-    }
-    if (document.getElementById("fechaPlazo").checked){
-        document.getElementById("numeroPlazo").disabled = false;
-        var diasPlazo = document.getElementById("numeroPlazo").value;
+    let importeCorrecto = false;
+    let diasCorrecto = false;
+    importe = document.getElementById("importeCalculo").value;
+    if (importe < bancoElegido.montoMinimo || importe < 0) {
+        alert("Ingrese un monto válido a calcular");
     } else {
-        document.getElementById("numeroPlazo").disabled = true
-        var diasPlazo = document.getElementById("plazoDias").value
+        importeCorrecto = true;
+    }
+    if (document.getElementById("fechaPlazo").checked && document.getElementById("numeroPlazo").value > 180 ) {
+        document.getElementById("numeroPlazo").disabled = false;
+        diasPlazo = document.getElementById("numeroPlazo").value;
+        diasCorrecto = true;
+    } else if (document.getElementById("fechaPlazo").checked === false && document.getElementById("plazoDias").value > 0) {
+        document.getElementById("numeroPlazo").disabled = true;
+        diasPlazo = document.getElementById("plazoDias").value;
+        diasCorrecto = true;
+    } else {
+        alert("Ingrese un plazo de dias valido");
     }
     preguntaCliente();
-    if (esCliente){
-        var importeFinal = importe * ((bancoElegido.TNACliente / 365 * diasPlazo) / 100 + 1 );
+    if (esCliente) {
+        importeFinal = importe * ((bancoElegido.TNACliente / 365 * diasPlazo) / 100 + 1);
     } else {
-        var importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1 );
+        importeFinal = importe * ((bancoElegido.TNA / 365 * diasPlazo) / 100 + 1);
     }
+    interesesRes = importeFinal - importe;
     function interesesResultado(intereses) {
-        intereses = importeFinal-importe;
-        document.getElementById('InteresesRes').value=intereses.toFixed(2);
+        intereses = interesesRes;
+        document.getElementById('InteresesRes').value = intereses.toFixed(2);
     }
-    function diasResultado(dias){
-        dias=diasPlazo;
-        document.getElementById('diasRes').value=dias;
+    function diasResultado(dias) {
+        dias = diasPlazo;
+        document.getElementById('diasRes').value = dias;
     }
-    function importeResultado(importe){
-        importe = importeFinal 
-        document.getElementById("importeRes").value=importe.toFixed(2);
+    function importeResultado(importe) {
+        importe = importeFinal
+        document.getElementById("importeRes").value = importe.toFixed(2);
     }
-    return interesesResultado(),diasResultado(),importeResultado();
+    if (importeCorrecto && diasCorrecto) {
+        elementoHistorial()
+    };
+    return interesesResultado(), diasResultado(), importeResultado();
 }
 $(function () {
     $('[data-toggle="popover"]').popover({
@@ -122,73 +172,83 @@ $(function () {
     })
 })
 //Login
-function validarUsuario(){;
+function validarUsuario() {
+    ;
     var todoCorrecto = true;
-    var formulario = document.formularioContacto;
-    for (var i=0; i<formulario.length; i++) {
-        if(formulario[i].type =='text' || formulario[i].type == "password") {
-                if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)){
-                    alert (formulario[i].name+ ' no puede estar vacío o contener sólo espacios en blanco');
-                    todoCorrecto=false;
-                }
+    let formulario = document.formularioContacto;
+    for (var i = 0; i < formulario.length; i++) {
+        if (formulario[i].type == 'text' || formulario[i].type == "password") {
+            if (formulario[i].value == null || formulario[i].value.length == 0 || /^\s*$/.test(formulario[i].value)) {
+                alert(formulario[i].name + ' no puede estar vacío o contener sólo espacios en blanco');
+                todoCorrecto = false;
+            }
         }
     }
     if (todoCorrecto == true) {
-        $("#registrarUsuario").click(function(){
+        $("#registrarUsuario").click(function () {
             $('#exampleModal').modal('hide'),
-            $("#formRegistro")[0].reset();
+                $("#formRegistro")[0].reset();
         })
         registroUsuario()
     }
 }
 function registroUsuario() {
     console.log("Se guardo el usuario")
-    function Usuario (nickname,contrasenia){
+    function Usuario(nickname, contrasenia) {
         this.nickname = nickname;
         this.contrasenia = contrasenia;
     }
     let Usuario1 = new Usuario(
         document.getElementById("nickname").value,
         document.getElementById("password").value,
-        )
-    localStorage.setItem("usuario",Usuario1.nickname);
-    localStorage.setItem("contrasenia",Usuario1.contrasenia);
-    let nombreBienvenida = Usuario1.nickname;
-    let saludoUsuario = nombreBienvenida.replace(/\s+/g, '');
+    )
+    localStorage.setItem("usuario", Usuario1.nickname);
+    localStorage.setItem("contrasenia", Usuario1.contrasenia);
 }
-function iniciarUsuario(){
-    if (localStorage["usuario"] === document.getElementById("nicknameLogin").value && localStorage["contrasenia"] === document.getElementById("passwordLogin").value){
-        console.log("Se aprobo al usuario")
-        } else{
-            console.log("USUARIO NO REGISTRADO")
+function iniciarUsuario() {
+    let botonLogout = document.createElement('BUTTON');
+    botonLogout.innerHTML = "Log-Out";
+    botonLogout.classList.add('btn', 'btn-dark',
+        'btn-outline-light', 'my-2', 'my-sm-0', 'botonLogout');
+    if (localStorage["usuario"] === document.getElementById("nicknameLogin").value && localStorage["contrasenia"] === document.getElementById("passwordLogin").value) {
+        $('#form-login').remove(),
+            $('.form-inline').append(
+                '<span>' + 'Bienvenid@ ' + localStorage["usuario"]
+            ),
+            $('.form-inline').append(botonLogout)
+    } else {
+        alert("USUARIO NO REGISTRADO")
     }
 }
+// function salidaUsuario(e){
+//     e.preventDefault(),
+//     $('.form-inline').remove('span'),
+//     $('.form-inline').remove(botonLogout),
+//     $('#form-login').append('.form-inline')
+// }
 var buttonLogin = document.getElementById("log-in");
 buttonLogin.addEventListener("click", iniciarUsuario);
 var buttonCalcular = document.getElementById("enviarPresupuesto");
-buttonCalcular.addEventListener("click", datosPlazo);
+buttonCalcular.addEventListener("click", () => {
+    datosPlazo();
+});
 var buttonRegistro = document.getElementById("registrarUsuario");
 buttonRegistro.addEventListener("click", validarUsuario);
 // Cotizacion dolar API
-$("#buttonDolar").click(function(){
-    $.ajax({
-        url: 'http://api.estadisticasbcra.com/usd_of',
-        type: 'GET',
-        data:{d: "2021-03-01"},
-        beforeSend: function (xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NDYxNzEwOTAsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJhZ3VzLmNhYi4yMDEyQGdtYWlsLmNvbSJ9.luZhNnBCn6ab9zMK1P8_2YTBPcuD_ENCYgbiYAxdok4fZl1F2g1DLBIIX8Z32bqhDbSyF7qzj7Z3k0EDKVV9hw');
-        },
-        function(){
-            var resDolarOf = $("#resultadoDolar")
-            $.each(respuesta, function (index, miembro) {
-                listaAPI.append(
-                    '<div>' +
-                    '<p>' + 'Fecha Cotizacion: ' + miembro.d + '<br>' +
-                    'Importe: $ ' + miembro.v + '<br>' +
-                    '<br>' + '______________________________________' +
-                    '</div>'
-                );
-            });
-        },
-    });
+var apiNoCargada = true;
+$("#buttonDolar").click(function () {
+    $.get("https://www.dolarsi.com/api/api.php?type=valoresprincipales",
+        function (data) {
+            if (apiNoCargada) {
+                for (let x = 0; x < 2; x++) {
+                    $("#resultadoDolar").append(
+                        '<ul>' +
+                        '<span>' + data[x].casa.nombre + '</span>' +
+                        '<li>' + 'Compra: ' + data[x].casa.compra + '</li>' +
+                        '<li>' + 'Venta: ' + data[x].casa.venta + '</li>' + '</ul>'
+                    )
+                };
+                apiNoCargada = false;
+            }
+        })
 })

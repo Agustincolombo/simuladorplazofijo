@@ -1,12 +1,15 @@
 .titulo {
   position: relative; }
 
-.navbar-light .navbar-brand {
-  color: white;
-  margin: 0%; }
-
-.navbar-light form #input_izq {
-  margin-right: .5rem; }
+.navbar-light {
+  color: white; }
+  .navbar-light .navbar-brand {
+    color: white;
+    margin: 0%; }
+  .navbar-light form .botonLogout {
+    margin-left: 10px; }
+  .navbar-light form #input_izq {
+    margin-right: .5rem; }
 
 .form_login {
   display: flex;
@@ -82,3 +85,7 @@ main ul {
       margin: .5rem; }
   main ul .datosInput {
     display: inline-grid; }
+
+.mdc-list li {
+  display: flex;
+  justify-content: space-around; }

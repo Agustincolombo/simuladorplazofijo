@@ -3,11 +3,15 @@ $borde: 1px solid rgba(0,0,0,.2);
     position: relative;
 }
 .navbar-light{
+    color: white;
     .navbar-brand{
         color: white;
         margin: 0%;
     }
     form{
+        .botonLogout{
+            margin-left: 10px;
+        }
         #input_izq{
             margin-right: .5rem;
         }
@@ -105,5 +109,11 @@ main{
         .datosInput {
             display:inline-grid;
         }
+    }
+}
+.mdc-list{
+    li{
+        display: flex;
+        justify-content: space-around;
     }
 }
