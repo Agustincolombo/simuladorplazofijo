@@ -1,10 +1,3 @@
-const expresiones = {
-    usuario: /^[a-zA-Z0-9\_\-]{4,16}$/, // Letras, numeros, guion y guion_bajo
-    nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-    password: /^.{4,12}$/, // 4 a 12 digitos.
-    correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-    telefono: /^\d{7,14}$/ // 7 a 14 numeros.
-}
 //Informacion de los bancos
 function banco(nombre, TNA, TNACliente, montoMinimo) {
     this.nombre = nombre;
@@ -88,8 +81,8 @@ function otroDia() {
         document.getElementById("numeroPlazo").disabled = true
     }
 }
-window.onload= valorSlideDias(90);
-// Historial para usuarios registrados
+window.onload = valorSlideDias(90);
+// Historial de simulaciones
 var listHist = document.getElementById('listaHistorial');
 var counter = 0
 const historial = [];
@@ -110,7 +103,6 @@ function elementoHistorial() {
         nuevoSpan.textContent = text;
         return nuevoSpan
     }
-
     historial[counter].forEach(function (nuevoSpan) {
         listaNueva.appendChild(nuevoSpan);
     });
@@ -131,7 +123,7 @@ function datosPlazo() {
     } else {
         importeCorrecto = true;
     }
-    if (document.getElementById("fechaPlazo").checked && document.getElementById("numeroPlazo").value > 180 ) {
+    if (document.getElementById("fechaPlazo").checked && document.getElementById("numeroPlazo").value > 180) {
         document.getElementById("numeroPlazo").disabled = false;
         diasPlazo = document.getElementById("numeroPlazo").value;
         diasCorrecto = true;
@@ -213,23 +205,18 @@ function iniciarUsuario() {
     if (localStorage["usuario"] === document.getElementById("nicknameLogin").value && localStorage["contrasenia"] === document.getElementById("passwordLogin").value) {
         $('#form-login').remove(),
             $('.form-inline').append(
-                '<span>' + 'Bienvenid@ ' + localStorage["usuario"]
+                '<span>' + 'Bienvenid@ ' + localStorage["usuario"] + '</span'
             ),
-            $('.form-inline').append(botonLogout)
+            $('.form-inline').append(botonLogout);
     } else {
         alert("USUARIO NO REGISTRADO")
     }
 }
-// function salidaUsuario(e){
-//     e.preventDefault(),
-//     $('.form-inline').remove('span'),
-//     $('.form-inline').remove(botonLogout),
-//     $('#form-login').append('.form-inline')
-// }
 var buttonLogin = document.getElementById("log-in");
 buttonLogin.addEventListener("click", iniciarUsuario);
 var buttonCalcular = document.getElementById("enviarPresupuesto");
-buttonCalcular.addEventListener("click", () => {
+buttonCalcular.addEventListener("click", (e) => {
+    e.preventDefault();
     datosPlazo();
 });
 var buttonRegistro = document.getElementById("registrarUsuario");

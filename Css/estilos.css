@@ -1,5 +1,12 @@
-.titulo {
-  position: relative; }
+.titulo h1 {
+  text-align: center;
+  margin: 3%;
+  margin-bottom: 1%; }
+
+.titulo div {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1%; }
 
 .navbar-light {
   color: white; }
@@ -23,16 +30,12 @@
   margin-top: 5%;
   margin-bottom: 0%; }
 
-h1 {
-  text-align: center;
-  margin: 3%; }
-
 main h1 {
   text-align: center; }
 
 main .info_resultado {
   height: 10vh;
-  background-color: cadetblue;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
